@@ -1,0 +1,7 @@
+name = JobPortal
+description = First Example Module
+package = AndreExample
+version = VERSION
+core = 7.x
+
+files[] = modulea.module
