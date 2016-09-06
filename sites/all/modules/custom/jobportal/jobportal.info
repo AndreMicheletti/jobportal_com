@@ -1,7 +1,8 @@
 name = JobPortal
-description = First Example Module
-package = AndreExample
+description = Module to implement a very simple Job Portal functionality
+package = AndreTC
 version = VERSION
 core = 7.x
 
-files[] = modulea.module
+files[] = jobportal.module
+dependencies[] = profile2

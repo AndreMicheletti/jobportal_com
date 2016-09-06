@@ -6,10 +6,10 @@
  */
  
 function jobportal_schema() {
-    $schema['jobportal_history'] = array(
+    $schema['jobportal_offers'] = array(
         'fields' => array(
             'id' => array(
-                'description' => 'List of id included in the hisotry.',
+                'description' => 'ID of the offer',
                 'type' => 'int',
                 'not null' => TRUE,
                 'unsigned' => TRUE,
