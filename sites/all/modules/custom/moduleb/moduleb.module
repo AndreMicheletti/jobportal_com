@@ -1,7 +1,0 @@
-<?php
-
-function moduleb_helloworld() {
-	echo '<p> Hello World ! from Module B</p>';
-}
-
-?>

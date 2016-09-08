@@ -1,7 +1,0 @@
-name = Module B
-description = First Example Module B
-package = AndreExample
-version = VERSION
-core = 7.x
-
-files[] = moduleb.module
