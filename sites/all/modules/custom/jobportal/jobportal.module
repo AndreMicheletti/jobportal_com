@@ -1,6 +1,21 @@
+<?php
 
 
+function jobportal_menu() {
+	$items['joboffer/add'] = array(
+	   'title' => t('Add Job Offer'),
+	   'page callback' => 'jobportal_add_offer_page',
+	   'access callback' => TRUE,
+	   //'type' => MENU_CALLBACK,
+	   //'file' => 'jobportal_add_offer.pages.inc',
+	);
+	return $items;
+}
+
+function jobportal_add_offer_page() {
+	$output = 'Teste';
+	return $output;
+}
 
 
-
-
+?>
