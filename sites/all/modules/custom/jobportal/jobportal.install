@@ -1,0 +1,38 @@
+
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+ 
+function jobportal_schema() {
+    $schema['jobportal_offers'] = array(
+        'fields' => array(
+            'id' => array(
+                'description' => 'ID of the offer',
+                'type' => 'int',
+                'not null' => TRUE,
+                'unsigned' => TRUE,
+                'default' => 0,
+            ),
+            'title' => array(
+                'description' => 'List of companies included in the post review pages.',
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => FALSE,
+                'default' => NULL,
+            ),
+            'country' => array(
+                'description' => 'Country of the company.',
+                'type' => 'varchar',
+                'length' => 12,
+                'not null' => FALSE,
+                'default' => NULL,
+            )
+        ),
+        'primary key' => array('id'),
+    );
+    return $schema;
+}
+
+?>
