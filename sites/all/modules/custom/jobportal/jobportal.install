@@ -42,4 +42,3 @@ function jobportal_schema() {
     return $schema;
 }
 
-?>
