@@ -4,7 +4,7 @@
  * Implements hook_menu().
  */
 function helloworld_menu() {
-  $items['hello'] = array(
+  $items['joboffer'] = array(
     'title' => 'Hello world!',
     'page callback' => 'helloworld_page',
     'access callback' => TRUE,
@@ -19,3 +19,5 @@ function helloworld_menu() {
 function helloworld_page() {
   return 'Hello world!';
 }
+
+?>
