@@ -4,7 +4,7 @@
  * Implements hook_menu().
  */
 function jobportal_menu() {
-  $items['add_offer'] = array(
+  $items['offers/add'] = array(
 		'title' => t('Add Job Offer'),
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('jobportal_add_offer_form'),
@@ -20,6 +20,11 @@ function jobportal_menu() {
 }
 
 function jobportal_test_page() {
-	global $user;
-	var_dump($user->uid);
+	//global $user;
+	//var_dump($user->uid);
+	$content['raw-markup'] = array(
+		'#type' => 'markup',
+		'#markup' => '<a href="offers/add/"><button style="width:200px; height:50px;">Hello World!</button></a>',
+	);
+	return $content;
 }
