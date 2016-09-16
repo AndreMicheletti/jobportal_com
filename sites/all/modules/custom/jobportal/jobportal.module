@@ -3,21 +3,23 @@
 /**
  * Implements hook_menu().
  */
-function helloworld_menu() {
-  $items['joboffer'] = array(
-    'title' => 'Hello world!',
-    'page callback' => 'helloworld_page',
-    'access callback' => TRUE,
+function jobportal_menu() {
+  $items['add_offer'] = array(
+		'title' => t('Add Job Offer'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('jobportal_add_offer_form'),
+		'access callback' => TRUE,
+		'file' => 'jobportal_add_offer.pages.inc',
   );
-
+  $items['test'] = array(
+		'title' => t('Test Page'),
+		'page callback' => 'jobportal_test_page',
+		'access callback' => TRUE,
+  );
   return $items;
 }
 
-/**
- * Page callback for /hello.
- */
-function helloworld_page() {
-  return 'Hello world!';
+function jobportal_test_page() {
+	global $user;
+	var_dump($user->uid);
 }
-
-?>

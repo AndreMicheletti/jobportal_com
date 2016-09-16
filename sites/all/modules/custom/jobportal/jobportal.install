@@ -6,14 +6,12 @@
  */
  
 function jobportal_schema() {
-    $schema['jobportal_offers'] = array(
+    $schema['jobportal_offer'] = array(
         'fields' => array(
             'oid' => array(
                 'description' => 'ID of the offer',
-                'type' => 'int',
+                'type' => 'serial',
                 'not null' => TRUE,
-                'unsigned' => TRUE,
-                'default' => 0,
             ),
             'uid' => array(
                 'description' => 'ID of the user that created the offer.',
@@ -22,20 +20,44 @@ function jobportal_schema() {
                 'unsigned' => TRUE,
                 'default' => 0,
             ),
-            'title' => array(
-                'description' => 'Title of the Offer',
+            'company' => array(
+                'description' => 'Company offering the position',
                 'type' => 'varchar',
-                'length' => 40,
-                'not null' => FALSE,
-                'default' => NULL,
+                'length' => 25,
+                'not null' => TRUE,
+                'default' => '',
             ),
-            'content' => array(
-                'description' => 'Text content of the Offer',
+            'country' => array(
+                'description' => 'Country offering the position',
+                'type' => 'varchar',
+                'length' => 25,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'title' => array(
+                'description' => 'Headline for the Job Offer',
+                'type' => 'varchar',
+                'length' => 25,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'about' => array(
+                'description' => 'Description for the Job Offer',
                 'type' => 'varchar',
                 'length' => 255,
                 'not null' => FALSE,
-                'default' => NULL,
-            )
+                'default' => '',
+            ),
+            'positions_n' => array(
+                'description' => 'Number of positions available for the Job Offer',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+			'created' => array(
+                'description' => 'Timestamp when this offer was created',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
         ),
         'primary key' => array('oid'),
     );
