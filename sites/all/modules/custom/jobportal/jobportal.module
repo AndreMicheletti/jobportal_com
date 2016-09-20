@@ -4,27 +4,51 @@
  * Implements hook_menu().
  */
 function jobportal_menu() {
-  $items['offers/add'] = array(
+	$items['offers/add'] = array(
 		'title' => t('Add Job Offer'),
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('jobportal_add_offer_form'),
 		'access callback' => TRUE,
 		'file' => 'jobportal_add_offer.pages.inc',
-  );
-  $items['test'] = array(
+	);
+	$items['offers/search'] = array(
+		'title' => t('Search for a Job'),
+		'page callback' => 'jobportal_search_offer_page',
+		'page arguments' => array('0'),
+		'access callback' => TRUE,
+		'file' => 'jobportal_search_offer.pages.inc',
+	);
+	$items['test'] = array(
 		'title' => t('Test Page'),
 		'page callback' => 'jobportal_test_page',
 		'access callback' => TRUE,
-  );
-  return $items;
+	);
+	return $items;
 }
 
 function jobportal_test_page() {
-	//global $user;
-	//var_dump($user->uid);
+	//if (in_array('employer', $user->roles))  var_dump($user->roles);
+
+	global $user;
 	$content['raw-markup'] = array(
 		'#type' => 'markup',
-		'#markup' => '<a href="offers/add/"><button style="width:200px; height:50px;">Hello World!</button></a>',
+		'#markup' => '',
 	);
+
+	// Employer Links
+	if ( in_array ('employer', $user->roles) ) {
+		$content['raw-markup']['#markup'] .= buttonMarkup('Add new Job Offer', 'offers/add/', 'margin-right:25px;');
+	}
+
+	// Employee Links
+	if ( in_array ('employee', $user->roles) ) {
+		$content['raw-markup']['#markup'] .= buttonMarkup('Search Offers', 'offers/search/');
+	}
+
 	return $content;
 }
+
+function buttonMarkup($text, $href, $style = '') {
+	return "<a href='$href'><button style='width:200px; height:50px; $style'>$text</button></a>";
+}
+

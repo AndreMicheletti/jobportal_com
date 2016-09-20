@@ -1,13 +1,5 @@
 <?php
 
-function jobportal_add_offer() {
-	$content['raw-markup'] = array(
-		'#type' => 'markup',
-		'#markup' => '<p>Hello World!</p>',
-	);
-	return $content;
-}
-
 function jobportal_add_offer_form($form,  &$form_state) {
 	
 	$form['job_company'] = array(

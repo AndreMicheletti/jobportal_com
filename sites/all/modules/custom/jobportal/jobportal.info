@@ -4,5 +4,5 @@ package = AndreTC
 version = VERSION
 core = 7.x
 
-files[] = jobportal.module, jobportal_add_offer.pages.inc
+files[] = jobportal.module, jobportal_add_offer.pages.inc, jobportal_search_offer.pages.inc
 dependencies[] = profile2
