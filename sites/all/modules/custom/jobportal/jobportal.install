@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -60,6 +59,37 @@ function jobportal_schema() {
             ),
         ),
         'primary key' => array('oid'),
+    );
+    $schema['jobportal_applicants'] = array(
+        'fields' => array(
+            'aid' => array(
+                'description' => 'ID of the application',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+			'oid' => array(
+                'description' => 'ID of the offer to which this is applying',
+                'type' => 'int',
+                'not null' => TRUE,
+                'unsigned' => TRUE,
+                'default' => 0,
+			),
+            'uid' => array(
+                'description' => 'ID of the user that applied',
+                'type' => 'int',
+                'not null' => TRUE,
+                'unsigned' => TRUE,
+                'default' => 0,
+            ),
+            'message' => array(
+                'description' => 'Message for the application',
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+        ),
+        'primary key' => array('aid'),
     );
     return $schema;
 }

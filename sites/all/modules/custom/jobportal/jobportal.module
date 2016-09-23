@@ -23,32 +23,54 @@ function jobportal_menu() {
 		'page callback' => 'jobportal_test_page',
 		'access callback' => TRUE,
 	);
+	/*$items['offers/view'] = array(
+		'title' => t('View Offer'),
+		'page callback' => 'jobportal_view_offer_page',
+		'access callback' => TRUE,
+		'file' => 'jobportal_view_offer.pages.inc',
+	);*/
 	return $items;
 }
 
+/** 
+ * Page Callback for /test
+ */
 function jobportal_test_page() {
 	//if (in_array('employer', $user->roles))  var_dump($user->roles);
 
-	global $user;
 	$content['raw-markup'] = array(
 		'#type' => 'markup',
 		'#markup' => '',
 	);
 
+	global $user;
 	// Employer Links
-	if ( in_array ('employer', $user->roles) ) {
+	if ( in_array('employer', $user->roles) ) {
 		$content['raw-markup']['#markup'] .= buttonMarkup('Add new Job Offer', 'offers/add/', 'margin-right:25px;');
 	}
 
 	// Employee Links
-	if ( in_array ('employee', $user->roles) ) {
+	if ( in_array('employee', $user->roles) ) {
 		$content['raw-markup']['#markup'] .= buttonMarkup('Search Offers', 'offers/search/');
 	}
 
 	return $content;
 }
 
+/**
+ * Implements hook_views_api().
+ */
+function tc_review_post_views_api() {
+  return array(
+      'api' => 3,
+      'path' => drupal_get_path('module', 'jobportal') . '/includes/views',
+  );
+}
+
+/** 
+ * Create a Button with a link
+ * @return html code of a button with a link
+ */
 function buttonMarkup($text, $href, $style = '') {
 	return "<a href='$href'><button style='width:200px; height:50px; $style'>$text</button></a>";
 }
-

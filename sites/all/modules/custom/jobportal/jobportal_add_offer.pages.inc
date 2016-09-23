@@ -2,6 +2,12 @@
 
 function jobportal_add_offer_form($form,  &$form_state) {
 	
+	/*global $user;
+	if (!in_array ('employer', $user->roles) ) {
+		drupal_access_denied();
+		return NULL;
+	}*/
+	
 	$form['job_company'] = array(
 		'#type' => 'textfield',
 		'#title' => 'Company',

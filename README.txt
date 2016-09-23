@@ -11,13 +11,17 @@
 
  =------- CALL --------=
 
-     - See people who applied for the offer
+     - See people who applied for the offer (Views)
 
  = Job Seeker:
-     - List of all job offers (View)
-     - Individual Offer (View)
+     - List of all job offers (Views)
+     - Individual Offer (Views)
+
+ =------- CALL - Product Training--------=
 
 ===================================================================
+
+*** STUDY the API code given by Adel ***
 
 Search for :
 	Drupal Global Variables
@@ -28,4 +32,6 @@ Search for :
 	Drupal Post Request
 	Drupal db_insert function
 
+	Drupal Views - "Can I make simple search field with Views?"
+		     - https://www.drupal.org/project/views_search
 ===================================================================
