@@ -11,7 +11,7 @@ function jobportal_menu() {
 		'access callback' => TRUE,
 		'file' => 'jobportal_add_offer.pages.inc',
 	);
-	$items['offers/search'] = array(
+	/*$items['offers/search'] = array(
 		'title' => t('Search for a Job'),
 		'page callback' => 'jobportal_search_offer_page',
 		'page arguments' => array('0'),
@@ -22,13 +22,26 @@ function jobportal_menu() {
 		'title' => t('Test Page'),
 		'page callback' => 'jobportal_test_page',
 		'access callback' => TRUE,
-	);
-	/*$items['offers/view'] = array(
+	);*/
+	$items['offers/view'] = array(
 		'title' => t('View Offer'),
 		'page callback' => 'jobportal_view_offer_page',
 		'access callback' => TRUE,
 		'file' => 'jobportal_view_offer.pages.inc',
-	);*/
+	);
+	$items['offers/apply'] = array(
+		'title' => t('Apply Offer'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('jobportal_apply_form'),
+		'access callback' => TRUE,
+		'file' => 'jobportal_apply.pages.inc',
+	);
+	$items['offers/applicants'] = array(
+		'title' => t('See Applicants'),
+		'page callback' => 'jobportal_applicants_page',
+		'access callback' => TRUE,
+		'file' => 'jobportal_applicants.pages.inc',
+	);
 	return $items;
 }
 
@@ -55,16 +68,6 @@ function jobportal_test_page() {
 	}
 
 	return $content;
-}
-
-/**
- * Implements hook_views_api().
- */
-function tc_review_post_views_api() {
-  return array(
-      'api' => 3,
-      'path' => drupal_get_path('module', 'jobportal') . '/includes/views',
-  );
 }
 
 /** 

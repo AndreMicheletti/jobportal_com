@@ -54,7 +54,8 @@ function load_from_database($page, $limit = 10) {
 }
 
 function offer_table_markup($oid, $company, $country, $title, $about, $positions_n) {
-	$details_href = url("offers/$oid/details");
+	//$details_href = url("offers/$oid/details");
+	$details_href = ("view?oid=$oid");
 	$result = "
 	<style>
 		tr, td { background-color:#FFF; }

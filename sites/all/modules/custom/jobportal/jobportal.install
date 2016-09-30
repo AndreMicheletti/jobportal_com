@@ -2,16 +2,11 @@
 
 /**
  * Implements hook_schema().
- */
- 
+ */ 
 function jobportal_schema() {
     $schema['jobportal_offer'] = array(
         'fields' => array(
-            'oid' => array(
-                'description' => 'ID of the offer',
-                'type' => 'serial',
-                'not null' => TRUE,
-            ),
+            'oid' => array('description' => 'ID of the offer','type' => 'serial','not null' => TRUE,),
             'uid' => array(
                 'description' => 'ID of the user that created the offer.',
                 'type' => 'int',
@@ -87,6 +82,11 @@ function jobportal_schema() {
                 'length' => 255,
                 'not null' => TRUE,
                 'default' => '',
+            ),
+			'created' => array(
+                'description' => 'Timestamp when this application was submitted',
+                'type' => 'int',
+                'not null' => TRUE,
             ),
         ),
         'primary key' => array('aid'),

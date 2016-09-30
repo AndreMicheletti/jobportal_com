@@ -1,0 +1,271 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ */
+function jobportal_search_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'jobportal_search'),
+  );
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function jobportal_search_views_data() {
+    $data['jobportal_offer']['table']['group'] = t('Jobportal Search Offers');
+	$data['jobportal_offer']['table']['base'] = array(
+		'field' => 'oid',
+		'title' => t('Jobportal Search Offers ID'),
+		'help' => t('Stores all companies nid that need to be in post review pages.'),
+		'weight' => -10,
+    );
+    $data['jobportal_offer']['oid'] = array(
+        'title' => t('OID'),
+        'help' => t('Search Job Offers'),
+        'field' => array(
+            'handler' => 'views_handler_field',
+            'click sortable' => TRUE,
+        ),
+        'sort' => array(
+            'handler' => 'views_handler_sort',
+        ),
+        'filter' => array(
+            'handler' => 'views_handler_filter_string',
+        ),
+        'argument' => array(
+            'handler' => 'views_handler_argument_string',
+        ),
+    );
+    $data['jobportal_offer']['title'] = array(
+        'title' => t('Headline'),
+        'help' => t('Search Job Offers'),
+        'field' => array(
+            'handler' => 'views_handler_field',
+            'click sortable' => TRUE,
+        ),
+        'sort' => array(
+            'handler' => 'views_handler_sort',
+        ),
+        'filter' => array(
+            'handler' => 'views_handler_filter_string',
+        ),
+        'argument' => array(
+            'handler' => 'views_handler_argument_string',
+        ),
+    );
+    $data['jobportal_offer']['company'] = array(
+        'title' => t('Company'),
+        'help' => t('Search Job Offers'),
+        'field' => array(
+            'handler' => 'views_handler_field',
+            'click sortable' => TRUE,
+        ),
+        'sort' => array(
+            'handler' => 'views_handler_sort',
+        ),
+        'filter' => array(
+            'handler' => 'views_handler_filter_string',
+        ),
+        'argument' => array(
+            'handler' => 'views_handler_argument_string',
+        ),
+    );
+    $data['jobportal_offer']['country'] = array(
+        'title' => t('Country'),
+        'help' => t('Search Job Offers'),
+        'field' => array(
+            'handler' => 'views_handler_field',
+            'click sortable' => TRUE,
+        ),
+        'sort' => array(
+            'handler' => 'views_handler_sort',
+        ),
+        'filter' => array(
+            'handler' => 'views_handler_filter_string',
+        ),
+        'argument' => array(
+            'handler' => 'views_handler_argument_string',
+        ),
+    );
+    return $data;
+}
+
+/**
+ * Implements hook_views_default_views().
+ */
+function jobportal_search_views_default_views() {
+    // ---------------------------------------------------------------------------
+    // Search Offer Pages
+    // ---------------------------------------------------------------------------
+    //$view = views_new_view();
+	$view = new view();
+	$view->name = 'search_job_offers';
+	$view->description = '';
+	$view->tag = 'default';
+	$view->base_table = 'jobportal_offer';
+	$view->human_name = 'Search Job Offers';
+	$view->core = 7;
+	$view->api_version = '3.0';
+	$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+	/* Display: Master */
+	$handler = $view->new_display('default', 'Master', 'default');
+	$handler->display->display_options['title'] = 'Search Job Offers';
+	$handler->display->display_options['use_more_always'] = FALSE;
+	$handler->display->display_options['access']['type'] = 'role';
+	$handler->display->display_options['access']['role'] = array(
+	  3 => '3',
+	  2 => '2',
+	  5 => '5',
+	  4 => '4',
+	);
+	$handler->display->display_options['cache']['type'] = 'none';
+	$handler->display->display_options['query']['type'] = 'views_query';
+	$handler->display->display_options['exposed_form']['type'] = 'basic';
+    $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+	$handler->display->display_options['pager']['type'] = 'full';
+	$handler->display->display_options['pager']['options']['items_per_page'] = '30';
+    $handler->display->display_options['pager']['options']['offset'] = '0';
+    $handler->display->display_options['pager']['options']['id'] = '0';
+    $handler->display->display_options['pager']['options']['quantity'] = '9';
+    $handler->display->display_options['style_plugin'] = 'table';
+    $handler->display->display_options['style_options']['columns'] = array(
+      'title' => 'title',
+      'company' => 'company',
+      'country' => 'country',
+	  'oid' => 'oid',
+    );
+    $handler->display->display_options['style_options']['default'] = 'oid';
+	$handler->display->display_options['style_options']['info'] = array(
+      'title' => array(
+        'sortable' => 1,
+        'default_sort_order' => 'asc',
+        'align' => 'views-align-left',
+        'separator' => '',
+        'empty_column' => 0,
+      ),
+      'company' => array(
+        'sortable' => 1,
+        'default_sort_order' => 'asc',
+        'align' => 'views-align-left',
+        'separator' => '',
+        'empty_column' => 0,
+      ),
+      'country' => array(
+        'sortable' => 1,
+        'default_sort_order' => 'asc',
+        'align' => 'views-align-left',
+        'separator' => '',
+        'empty_column' => 0,
+      ),
+      'oid' => array(
+        'sortable' => 1,
+        'default_sort_order' => 'asc',
+        'align' => 'views-align-left',
+        'separator' => '',
+        'empty_column' => 0,
+      ),
+    );
+	$handler->display->display_options['style_options']['override'] = 1;
+    $handler->display->display_options['style_options']['sticky'] = TRUE;
+    $handler->display->display_options['style_options']['empty_table'] = TRUE;
+	
+	/* Header: Global: Text area */
+	$handler->display->display_options['header']['area']['id'] = 'area';
+	$handler->display->display_options['header']['area']['table'] = 'views';
+	$handler->display->display_options['header']['area']['field'] = 'area';
+	$handler->display->display_options['header']['area']['empty'] = TRUE;
+	$handler->display->display_options['header']['area']['content'] = '';
+	$handler->display->display_options['header']['area']['format'] = '3';
+	/* Footer: Global: Text area */
+	$handler->display->display_options['footer']['area']['id'] = 'area';
+	$handler->display->display_options['footer']['area']['table'] = 'views';
+	$handler->display->display_options['footer']['area']['field'] = 'area';
+	$handler->display->display_options['footer']['area']['empty'] = TRUE;
+	$handler->display->display_options['footer']['area']['content'] = '';
+	$handler->display->display_options['footer']['area']['format'] = '3';
+	
+	/* Field: Search Job Offers: Oid */
+    $handler->display->display_options['fields']['oid']['id'] = 'oid';
+    $handler->display->display_options['fields']['oid']['table'] = 'jobportal_offer';
+    $handler->display->display_options['fields']['oid']['field'] = 'oid';
+	/* Field: Search Job Offers: Title */
+    $handler->display->display_options['fields']['title']['id'] = 'title';
+    $handler->display->display_options['fields']['title']['table'] = 'jobportal_offer';
+    $handler->display->display_options['fields']['title']['field'] = 'title';
+	/* Field: Search Job Offers: Company */
+    $handler->display->display_options['fields']['company']['id'] = 'company';
+    $handler->display->display_options['fields']['company']['table'] = 'jobportal_offer';
+    $handler->display->display_options['fields']['company']['field'] = 'company';
+	/* Field: Search Job Offers: Country */
+    $handler->display->display_options['fields']['country']['id'] = 'country';
+    $handler->display->display_options['fields']['country']['table'] = 'jobportal_offer';
+    $handler->display->display_options['fields']['country']['field'] = 'country';
+	/* Field: Search Job Offers: Oid */
+    $handler->display->display_options['fields']['oid_1']['id'] = 'oid_1';
+    $handler->display->display_options['fields']['oid_1']['table'] = 'jobportal_offer';
+    $handler->display->display_options['fields']['oid_1']['field'] = 'oid';
+    $handler->display->display_options['fields']['oid_1']['label'] = 'view';
+    $handler->display->display_options['fields']['oid_1']['alter']['alter_text'] = TRUE;
+    $handler->display->display_options['fields']['oid_1']['alter']['text'] = 'view';
+    $handler->display->display_options['fields']['oid_1']['alter']['make_link'] = TRUE;
+    $handler->display->display_options['fields']['oid_1']['alter']['path'] = 'offers/view?oid=[oid]';
+    $handler->display->display_options['fields']['oid_1']['alter']['alt'] = 'view';
+	
+    /* Sort criterion: Search Job Offers: Offer country */
+    $handler->display->display_options['sorts']['country']['id'] = 'country';
+    $handler->display->display_options['sorts']['country']['table'] = 'jobportal_offer';
+    $handler->display->display_options['sorts']['country']['field'] = 'country';
+    /* Filter criterion: Search Job Offers: Offer Oid */	
+    $handler->display->display_options['filters']['oid']['id'] = 'oid';
+    $handler->display->display_options['filters']['oid']['table'] = 'jobportal_offer';
+    $handler->display->display_options['filters']['oid']['field'] = 'oid';
+    $handler->display->display_options['filters']['oid']['exposed'] = TRUE;
+    $handler->display->display_options['filters']['oid']['expose']['operator_id'] = 'oid_op';
+    $handler->display->display_options['filters']['oid']['expose']['label'] = 'Offer Oid';
+    $handler->display->display_options['filters']['oid']['expose']['operator'] = 'oid_op';
+    $handler->display->display_options['filters']['oid']['expose']['identifier'] = 'oid';
+    /* Filter criterion: Search Job Offers: Offer Title */
+    $handler->display->display_options['filters']['title']['id'] = 'title';
+    $handler->display->display_options['filters']['title']['table'] = 'jobportal_offer';
+    $handler->display->display_options['filters']['title']['field'] = 'title';
+    $handler->display->display_options['filters']['title']['operator'] = 'contains';
+    $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+    $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+    $handler->display->display_options['filters']['title']['expose']['label'] = 'Offer Title';
+    $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+    $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+    /* Filter criterion: Search Job Offers: Offer company */
+    $handler->display->display_options['filters']['company']['id'] = 'company';
+    $handler->display->display_options['filters']['company']['table'] = 'jobportal_offer';
+    $handler->display->display_options['filters']['company']['field'] = 'company';
+    $handler->display->display_options['filters']['company']['operator'] = 'contains';
+    $handler->display->display_options['filters']['company']['exposed'] = TRUE;
+    $handler->display->display_options['filters']['company']['expose']['operator_id'] = 'company_op';
+    $handler->display->display_options['filters']['company']['expose']['label'] = 'Offer company';
+    $handler->display->display_options['filters']['company']['expose']['operator'] = 'company_op';
+    $handler->display->display_options['filters']['company']['expose']['identifier'] = 'company';
+    /* Filter criterion: Search Job Offers: Offer country */
+    $handler->display->display_options['filters']['country']['id'] = 'country';
+    $handler->display->display_options['filters']['country']['table'] = 'jobportal_offer';
+    $handler->display->display_options['filters']['country']['field'] = 'country';
+    $handler->display->display_options['filters']['country']['operator'] = 'contains';
+    $handler->display->display_options['filters']['country']['exposed'] = TRUE;
+    $handler->display->display_options['filters']['country']['expose']['operator_id'] = 'country_op';
+    $handler->display->display_options['filters']['country']['expose']['label'] = 'Offer Country';
+    $handler->display->display_options['filters']['country']['expose']['operator'] = 'country_op';
+    $handler->display->display_options['filters']['country']['expose']['identifier'] = 'country';
+
+	/* Display: Page */
+	$handler = $view->new_display('page', 'Page', 'page');
+	$handler->display->display_options['path'] = 'offers/search-jobs';
+	$handler->display->display_options['menu']['type'] = 'normal';
+	$handler->display->display_options['menu']['title'] = 'Search Offers';
+	$handler->display->display_options['menu']['weight'] = '0';
+	$handler->display->display_options['menu']['context'] = 0;
+	$handler->display->display_options['menu']['context_only_inline'] = 0;
+	$views[$view->name] = $view;
+	return $views;
+}

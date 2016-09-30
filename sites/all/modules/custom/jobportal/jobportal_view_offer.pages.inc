@@ -20,12 +20,22 @@ function jobportal_view_offer_page() {
 		$created = gmdate("d/m/Y", $offer['created']);
 		
 		$apply_link_html = "";
+		$applicants_link_html = "";
 		global $user;
 		if ( in_array ('employer' , $user->roles)) {
-			$href = url('offers/' . $oid . '/apply');
+			$href = url('offers/applicants') . '?oid=' . $oid;
+			$applicants_link_html = "
+			<a href='$href' style='text-decoration:none;'>
+				<button style='width:20%; height:36px; display:inline-block;margin-top:25px;'>
+					See Applicants
+				</button>
+			</a>";
+		}
+		if ( in_array ('employee' , $user->roles)) {
+			$href = url('offers/apply') . '?oid=' . $oid;
 			$apply_link_html = "
 			<a href='$href' style='text-decoration:none;'>
-				<button style='width:50%; height:36px; display:block;margin-top:25px;'>
+				<button style='width:20%; height:36px; display:inline-block;margin-top:25px;'>
 					Apply
 				</button>
 			</a>";
@@ -51,7 +61,7 @@ function jobportal_view_offer_page() {
 			<h4>Created:<span style='color:#000000;font-family:Arial;font-size:13px;'> $created</span></h4>
 			<h4>Number of Positions: <span style='color:#000000;font-family:Arial;font-size:13px;'> $position_n</span></h4>
 			
-			$apply_link_html
+			$apply_link_html $applicants_link_html
 			";			
 			return $content;
 		}

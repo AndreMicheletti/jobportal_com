@@ -8,14 +8,11 @@
 
  = Employer:
      - (DONE) Add Job Offer
-
- =------- CALL --------=
-
-     - See people who applied for the offer (Views)
+     - See people who applied for the offer
 
  = Job Seeker:
+     - Individual Offer
      - List of all job offers (Views)
-     - Individual Offer (Views)
 
  =------- CALL - Product Training--------=
 

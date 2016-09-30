@@ -1,0 +1,8 @@
+name = JobPortal Search View
+description = Module to implement a search view for JobPortal
+package = AndreTC
+version = VERSION
+core = 7.x
+
+dependencies[] = jobportal
+dependencies[] = views
