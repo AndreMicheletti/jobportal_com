@@ -4,15 +4,15 @@
 (DONE) 2. Install User Role Module
  (Employer and Job Seeker)
 
-3. Create Views for each function (employer and seeker)
+(DONE) 3. Create Views for each function (employer and seeker)
 
- = Employer:
+ (DONE) = Employer:
      - (DONE) Add Job Offer
-     - See people who applied for the offer
+     - (DONE) See people who applied for the offer
 
- = Job Seeker:
-     - Individual Offer
-     - List of all job offers (Views)
+ (DONE) = Job Seeker:
+     - (DONE) Individual Offer
+     - (DONE) List of all job offers (Views)
 
  =------- CALL - Product Training--------=
 
